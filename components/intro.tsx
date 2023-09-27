@@ -10,7 +10,10 @@ import { FaGithubSquare } from 'react-icons/fa';
 
 const Intro = () => {
 	return (
-		<section className='mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]'>
+		<section
+			id='home'
+			className='mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]'
+		>
 			<div className='flex items-center justify-center'>
 				<div className='relative'>
 					<motion.div
@@ -54,7 +57,9 @@ const Intro = () => {
 				<span className='font-bold'>Hard-working person</span> and{' '}
 				passionate web developer. I focus on the frontend,{' '}
 				<span className='italic'>sites & apps</span>. My focus is{' '}
-				<span className='underline'>React (Next.js)</span>.
+				<span className='underline'>React (Next.js)</span>. I primarily
+				engage in straightforward backend activities, predominantly
+				utilizing Node.js and NestJS for implementation.
 			</motion.h1>
 			<motion.div
 				className='flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium'
