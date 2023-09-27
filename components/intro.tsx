@@ -46,13 +46,13 @@ const Intro = () => {
 			</div>
 
 			<motion.h1
-				className='mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl'
+				className='mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-3xl'
 				initial={{ opacity: 0, y: 100 }}
 				animate={{ opacity: 1, y: 0 }}
 			>
 				<span className='font-bold'>Hello, I'm Mateusz.</span> I'm a{' '}
 				<span className='font-bold'>Hard-working person</span> and{' '}
-				Passionate web developer. I focus on the frontend,{' '}
+				passionate web developer. I focus on the frontend,{' '}
 				<span className='italic'>sites & apps</span>. My focus is{' '}
 				<span className='underline'>React (Next.js)</span>.
 			</motion.h1>
