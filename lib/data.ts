@@ -47,7 +47,7 @@ export const experiencesData = [
 		description:
 			'Running an online store, including a comprehensive offer preparation process, order fulfillment and after-sales service.',
 		icon: React.createElement(CgWorkAlt),
-		date: '2019 - 2021',
+		date: '2019 - 2022',
 	},
 	{
 		title: 'Company Owner TROPIK S.C',
@@ -55,7 +55,7 @@ export const experiencesData = [
 		description:
 			'Management and control of drivers work. Preparing documentation for completed orders. Cooperation with external forwarding.',
 		icon: React.createElement(FaTruck),
-		date: '2021 - present',
+		date: '2019 - 2021',
 	},
 ] as const;
 

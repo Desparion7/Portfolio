@@ -8,9 +8,11 @@ import { BsArrowRight, BsLinkedin } from 'react-icons/bs';
 import { HiDownload } from 'react-icons/hi';
 import { FaGithubSquare } from 'react-icons/fa';
 import { useSectionInView } from '@/lib/hooks';
+import { useActiveSectionContext } from '@/context/active-section-context';
 
 const Intro = () => {
 	const { ref } = useSectionInView('Home', 0.5);
+	const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
 	return (
 		<section
@@ -31,7 +33,7 @@ const Intro = () => {
 							width={192}
 							height={192}
 							quality={95}
-							property='true'
+							priority
 							className='h-24 w-24 rounded-full object-cover border-[0.35rem] border-white shadow-xl'
 						/>
 					</motion.div>
@@ -61,9 +63,8 @@ const Intro = () => {
 				<span className='font-bold'>Hard-working person</span> and{' '}
 				passionate web developer. I focus on the frontend,{' '}
 				<span className='italic'>sites & apps</span>. My focus is{' '}
-				<span className='underline'>React (Next.js)</span>. I primarily
-				engage in straightforward backend activities, predominantly
-				utilizing Node.js and NestJS for implementation.
+				<span className='underline'>React (Next.js)</span>. On the
+				backend i use NestJS and Node.js
 			</motion.h1>
 			<motion.div
 				className='flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium'
@@ -75,14 +76,18 @@ const Intro = () => {
 			>
 				<Link
 					href='#contact'
-					className='group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition'
+					className='group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-105 hover:bg-gray-950 active:scale-105 transition'
+					onClick={() => {
+						setActiveSection('Contact');
+						setTimeOfLastClick(Date.now());
+					}}
 				>
 					Contact me here{' '}
 					<BsArrowRight className='opacity-70 group-hover:translate-x-1 transition' />
 				</Link>
 
 				<a
-					className='group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10'
+					className='group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-105 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10'
 					href='/CV.pdf'
 					download
 				>
