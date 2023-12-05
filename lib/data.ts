@@ -4,6 +4,7 @@ import { FaTruck } from 'react-icons/fa';
 import wickerlandImg from '@/public/wickerland.png';
 import carentImg from '@/public/carent.png';
 import gymAppImg from '@/public/gymapp.png';
+import modezpImg from '@/public/modezp.png';
 
 export const links = [
 	{
@@ -66,6 +67,7 @@ export const projectsData = [
 			'Ecommerce written by myself use RTK Query, router etc. MERN.The shop have a lot functionally. Backend on NestJS.',
 		tags: ['React', 'RTK Query', 'MongoDB', 'NestJS', 'TypeScript'],
 		imageUrl: wickerlandImg,
+		pageLink: 'https://github.com/Desparion7/Wickerland',
 	},
 	{
 		title: 'Carent',
@@ -73,13 +75,23 @@ export const projectsData = [
 			'Car rental company website with options to make reservation. Simple animation made in Blender',
 		tags: ['React', 'RTK Query', 'MongoDB', 'NestJS', 'TypeScript', 'SCSS'],
 		imageUrl: carentImg,
+		pageLink: 'https://github.com/Desparion7/Carent',
 	},
 	{
 		title: 'Gym App',
 		description:
-			'The gym workout management project is designed to help you manage your workouts effectively. You can use the application to plan and organize your gym routines. ',
+			'The gym workout management project is designed to help you manage your workouts effectively. You can use the application to plan and organize your gym routines.',
 		tags: ['React', 'RTK Query', 'MongoDB', 'Node.js', 'TypeScript'],
 		imageUrl: gymAppImg,
+		pageLink: 'https://github.com/Desparion7/GymApp',
+	},
+	{
+		title: 'ModezpShop',
+		description:
+			'ECommerce written by myself use redux, router etc. MERN.The shop have a lot functionally.',
+		tags: ['React', 'MongoDB', 'Node.js'],
+		imageUrl: modezpImg,
+		pageLink: 'https://github.com/Desparion7/ModezpShop',
 	},
 ] as const;
 
