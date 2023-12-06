@@ -1,50 +1,19 @@
 'use client';
-import type { SectionName } from '@/lib/types';
-import { ReactNode, useState, createContext, useContext } from 'react';
+import { create } from 'zustand';
 
-
-
-type ActiveSectionContextProviderProps = {
-	children: ReactNode;
-};
-type ActiveSectionContextType = {
-	activeSection: SectionName;
-	setActiveSection: React.Dispatch<React.SetStateAction<SectionName>>;
+export type StateSctions = {
+	activeSection: string;
 	timeOfLastClick: number;
-	setTimeOfLastClick: React.Dispatch<React.SetStateAction<number>>;
 };
-
-const ActiveSectionContext = createContext<ActiveSectionContextType | null>(
-	null
-);
-
-const ActiveSectionContextProvider = ({
-	children,
-}: ActiveSectionContextProviderProps) => {
-	const [activeSection, setActiveSection] = useState<SectionName>('Home');
-	const [timeOfLastClick, setTimeOfLastClick] = useState(0);
-
-	return (
-		<ActiveSectionContext.Provider
-			value={{
-				activeSection,
-				setActiveSection,
-				timeOfLastClick,
-				setTimeOfLastClick,
-			}}
-		>
-			{children}
-		</ActiveSectionContext.Provider>
-	);
+export type ActiveSectionStoreActions = {
+	changeActiveSection: (section: string) => void;
+	changeTimeOfLastClick: (time: number) => void;
 };
-export const useActiveSectionContext = (): ActiveSectionContextType => {
-	const context = useContext(ActiveSectionContext);
-	if (!context) {
-		throw new Error(
-			'useActiveSectionContext must be use in ActiveSectionContextProvider'
-		);
-	}
-	return context;
-};
-
-export default ActiveSectionContextProvider;
+export const useSectionStore = create<
+	StateSctions & ActiveSectionStoreActions
+>()((set) => ({
+	activeSection: 'Home',
+	timeOfLastClick: 0,
+	changeActiveSection: (sectionName) => set({ activeSection: sectionName }),
+	changeTimeOfLastClick: (time) => set({ timeOfLastClick: time }),
+}));

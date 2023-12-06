@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
 import { links } from '@/lib/data';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { useActiveSectionContext } from '@/context/active-section-context';
+import { useSectionStore } from '@/context/active-section-context';
 
 const Header = () => {
-	const { activeSection, setActiveSection, setTimeOfLastClick } =
-		useActiveSectionContext();
+	const activeSection = useSectionStore((state) => state.activeSection);
+	const changeActiveSection = useSectionStore((state) => state.changeActiveSection);
+	const changeTimeOfLastClick = useSectionStore((state) => state.changeTimeOfLastClick);
 
 	return (
 		<header className='z-[999] relative'>
@@ -36,8 +37,8 @@ const Header = () => {
 								)}
 								href={link.hash}
 								onClick={() => {
-									setActiveSection(link.name);
-									setTimeOfLastClick(Date.now());
+									changeActiveSection(link.name);
+									changeTimeOfLastClick(Date.now());
 								}}
 							>
 								{link.name}
