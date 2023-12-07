@@ -1,11 +1,11 @@
 'use client';
 import { create } from 'zustand';
 
-export type StateSctions = {
+type StateSctions = {
 	activeSection: string;
 	timeOfLastClick: number;
 };
-export type ActiveSectionStoreActions = {
+type ActiveSectionStoreActions = {
 	changeActiveSection: (section: string) => void;
 	changeTimeOfLastClick: (time: number) => void;
 };
