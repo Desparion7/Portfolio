@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import Header from '@/components/header';
 import './globals.css';
 import type { Metadata } from 'next';
@@ -6,7 +7,6 @@ import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import Footer from '@/components/footer';
 import ThemeSwitch from '@/components/theme-switch';
-import { useEffect } from 'react';
 import { Theme, useThemeStore } from '@/context/theme-context';
 
 const inter = Inter({ subsets: ['latin'] });
