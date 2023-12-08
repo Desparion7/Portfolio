@@ -1,5 +1,4 @@
 'use client';
-import { useEffect } from 'react';
 import Header from '@/components/header';
 import './globals.css';
 import type { Metadata } from 'next';
@@ -8,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import Footer from '@/components/footer';
 import ThemeSwitch from '@/components/theme-switch';
 import { Theme, useThemeStore } from '@/context/theme-context';
+import { useEffect } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,8 +23,8 @@ export default function RootLayout({
 }) {
 	const setThemeSection = useThemeStore((state) => state.setThemeSection);
 
+	const localTheme = window.localStorage.getItem('theme') as Theme;
 	useEffect(() => {
-		const localTheme = window.localStorage.getItem('theme') as Theme;
 		if (localTheme) {
 			setThemeSection(localTheme);
 			if (localTheme === 'dark')
@@ -33,7 +33,7 @@ export default function RootLayout({
 			setThemeSection('dark');
 			document.documentElement.classList.add('dark');
 		}
-	}, [setThemeSection]);
+	}, [setThemeSection, localTheme]);
 
 	return (
 		<html lang='en' className='!scroll-smooth'>
