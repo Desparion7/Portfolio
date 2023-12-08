@@ -8,11 +8,11 @@ import {
 import 'react-vertical-timeline-component/style.min.css';
 import { experiencesData } from '@/lib/data';
 import { useSectionInView } from '@/lib/hooks';
-import { useThemeContext } from '@/context/theme-context';
+import { useThemeStore } from '@/context/theme-context';
 
 const Experience = () => {
 	const { ref } = useSectionInView('Experience');
-	const { theme } = useThemeContext();
+	const theme = useThemeStore((state) => state.theme);
 	return (
 		<section
 			ref={ref}

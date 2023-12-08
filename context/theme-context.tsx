@@ -1,64 +1,35 @@
 'use client';
-import React, {
-	useEffect,
-	useState,
-	ReactNode,
-	createContext,
-	useContext,
-} from 'react';
+import { create } from 'zustand';
 
-type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
-type ThemeContextProviderProps = {
-	children: ReactNode;
-};
-
-type ThemeContextType = {
+type StateTheme = {
 	theme: Theme;
-	toggleTheme: () => void;
+};
+type ThemeStoreActions = {
+	setThemeSection: (newTheme: Theme) => void;
+	toggleThemeSection: () => void;
 };
 
-const ThemeContext = createContext<ThemeContextType | null>(null);
-
-const ThemeContextProvider = ({ children }: ThemeContextProviderProps) => {
-	const [theme, setTheme] = useState<Theme>('light');
-
-	const toggleTheme = () => {
-		if (theme === 'light') {
-			setTheme('dark');
-			window.localStorage.setItem('theme', 'dark');
-			document.documentElement.classList.add('dark');
-		} else {
-			setTheme('light');
-			window.localStorage.setItem('theme', 'light');
-			document.documentElement.classList.remove('dark');
-		}
-	};
-
-	useEffect(() => {
-		const localTheme = window.localStorage.getItem('theme') as Theme | null;
-		if (localTheme) {
-			setTheme(localTheme);
-			if (localTheme === 'dark')
-				document.documentElement.classList.add('dark');
-		} else if (window.matchMedia('(prefers-color-scheme:dark)').matches) {
-			setTheme('dark');
-			document.documentElement.classList.add('dark');
-		}
-	}, []);
-	return (
-		<ThemeContext.Provider value={{ theme, toggleTheme }}>
-			{children}
-		</ThemeContext.Provider>
-	);
-};
-
-export const useThemeContext = () => {
-	const context = useContext(ThemeContext);
-	if (!context) {
-		throw new Error('useThemeContext must be use in ThemeContextProvider');
-	}
-	return context;
-};
-
-export default ThemeContextProvider;
+export const useThemeStore = create<StateTheme & ThemeStoreActions>()(
+	(set) => ({
+		theme: 'light',
+		setThemeSection: (newTheme) => set({ theme: newTheme }),
+		toggleThemeSection: () =>
+			set((state) => {
+				if (state.theme === 'light') {
+					window.localStorage.setItem('theme', 'dark');
+					document.documentElement.classList.add('dark');
+					return {
+						theme: 'dark',
+					};
+				} else {
+					window.localStorage.setItem('theme', 'light');
+					document.documentElement.classList.remove('dark');
+					return {
+						theme: 'light',
+					};
+				}
+			}),
+	})
+);

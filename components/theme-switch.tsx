@@ -1,10 +1,11 @@
 'use client';
-import { useThemeContext } from '@/context/theme-context';
+import { useThemeStore } from '@/context/theme-context';
 import React from 'react';
 import { BsMoon, BsSun } from 'react-icons/bs';
 
 const ThemeSwitch = () => {
-	const { theme, toggleTheme } = useThemeContext();
+	const theme = useThemeStore((state) => state.theme);
+	const toggleTheme = useThemeStore((state) => state.toggleThemeSection);
 	return (
 		<button
 			className='fixed bottom-5 right-5 bg-white w-[3rem] h-[3rem] bg-opacity-80 backdrop-blur-[0.5rem] border border-white border-opacity-40 shadow-2xl rounded-full flex justify-center items-center hover:scale-[1.15] active:scale-105 transition-all dark:bg-gray-950'
